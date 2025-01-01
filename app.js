@@ -5,12 +5,15 @@ class Battle{
         this.fighter2 = fighter2;
         this.round = 1;
     }
-    battleStart(){
+    startBattle(){
         console.log("battle Started" );
         console.log(`${this.fighter1.name} vs ${this.fighter2.name}`);
     }
     fight() {
-        console.log(`Round ${this.round}:`);
+        console.log(`Fighting In Round ${this.round}:`);
+        const attackEffect = Math.max(fighter1.attackPower - fighter2.defensePower, 0);
+        target.health -= attackEffect;
+
     }
 }
 class Fighter {
@@ -33,47 +36,17 @@ class Fighter {
         defend(){
             console.log(`Defend with `);
         }        
-            // defend : () => {
-            //     console.log(`Defend with `);
-            // }
+            
     
 }
 
-// class SpaceShip{
-//     constructor(name,hull,firePower,accuracy,commander){
-//         this.name = name;
-//         this.hull = hull;
-//         this.firePower = firePower;
-//         this.accuracy = accuracy;
-//         this.commander = commander;         //Alien / Captain
-       
-//     }
 
-//     attack(weapon) {
-//         console.log(`Fire on ` + weapon);
-//     }
-//     defend()  {
-//         console.log(`Defend on`);
-//     }
-//     attackBack(weapon)  {
-//         console.log(`Fire back` + weapon);
-//         this.weapon = weapon;
-//     }
-//     retreat = function()  {
-    
-//     }
-// }
-
-
-let captainFighter = new Fighter('Captain Mohamed',11,12,13);
-console.log("Fighter " + captainFighter.name)
-
-let alienFighter = new Fighter('Alien Z1',11,12,13);
-
+let captainFighter = new Fighter('Captain Mohamed',20,5,2);
+let alienFighter = new Fighter('Alien Z1',15,4,1);
 
 let battle = new Battle(captainFighter,alienFighter);
-battle.battleStart();
-
+battle.startBattle();
+battle.fight();
 function attack()
 {
     let txtgame = document.querySelector('.txtGame');
