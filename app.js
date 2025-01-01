@@ -1,3 +1,5 @@
+const alienDiv = document.querySelector(".alien");
+const playerDiv = document.querySelector(".player");
 
 class Battle{
     constructor(fighter1, fighter2){
@@ -11,8 +13,9 @@ class Battle{
     }
     fight() {
         console.log(`Fighting In Round ${this.round}:`);
-        const attackEffect = Math.max(fighter1.attackPower - fighter2.defensePower, 0);
-        target.health -= attackEffect;
+        const attackEffect = Math.max(this.fighter1.attackPower - this.fighter2.defensePower, 0);
+        this.fighter2.health -= attackEffect;
+        updateDataBind(); 
 
     }
 }
@@ -40,6 +43,26 @@ class Fighter {
     
 }
 
+function updateDataBind(){
+    console.log('Update data bind' );
+    alienDiv.innerHTML = `
+    <div>
+    <h3>${alienFighter.name} </h3>
+    <div>Health: ${alienFighter.health} </div>
+    <div>Attack Power: ${alienFighter.attackPower} </div>
+    <div> Defense Power: ${alienFighter.defensePower} </div>
+</div>
+    `;
+
+playerDiv.innerHTML = `
+<div>    
+<h3>${captainFighter.name} </h3>
+    <div> Health: ${captainFighter.health} </div>
+    <div> Attack Power: ${captainFighter.attackPower} </div>
+    <div> Defense Power: ${captainFighter.defensePower} </div>
+</div>
+`;
+}
 
 let captainFighter = new Fighter('Captain Mohamed',20,5,2);
 let alienFighter = new Fighter('Alien Z1',15,4,1);
@@ -47,6 +70,7 @@ let alienFighter = new Fighter('Alien Z1',15,4,1);
 let battle = new Battle(captainFighter,alienFighter);
 battle.startBattle();
 battle.fight();
+updateDataBind();
 function attack()
 {
     let txtgame = document.querySelector('.txtGame');

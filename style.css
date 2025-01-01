@@ -1,3 +1,6 @@
+*{
+    margin:none !important;
+}
 div{
     border: 1px solid black;
 }
@@ -6,7 +9,7 @@ div{
     width: 100%;
 }
 .gameInfoBar{
-    height: 50px;
+    /* height: 50px; */
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -24,15 +27,30 @@ div{
     padding: 15px;
 }
 .alien,.player{
-    height: 50px;
+    height: auto  !important;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+
+    border: 2px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    /* width: 200px; */
+    text-align: center;
+    background-color: black !important;
+}
+.alien {
+    color: red;
+}
+
+.player {
+    color: blue;
 }
 .gameMainSpace{
-    height: 500px;
+    height: 400px;
     width: 100%;
     background: url("galaxy.webp");
     background-repeat: no-repeat;
