@@ -1,5 +1,5 @@
 *{
-    margin:none !important;
+    margin: 0px;
 }
 div{
     border: 1px solid black;
@@ -19,7 +19,7 @@ div{
 .gameFooter{
     
     height: auto;
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -37,7 +37,7 @@ div{
 
     border: 2px solid #ccc;
     padding: 10px;
-    margin: 10px;
+    /* margin: 10px; */
     /* width: 200px; */
     text-align: center;
     background-color: black !important;
@@ -50,7 +50,7 @@ div{
     color: blue;
 }
 .gameMainSpace{
-    height: 400px;
+    /* height: 400px; */
     width: 100%;
     background: url("galaxy.webp");
     background-repeat: no-repeat;
@@ -67,6 +67,10 @@ div{
     border-radius: 50px;
     padding: 10px 20px;
     background-color: black !important;
+}
+.btnActionRetreat:hover,
+.btnActionAttack:hover{
+cursor: pointer;
 }
 .txtGame{
     border: 1px solid red !important;

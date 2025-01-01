@@ -74,6 +74,5 @@ updateDataBind();
 function attack()
 {
     let txtgame = document.querySelector('.txtGame');
-    // console.log(txtgame);
     txtgame.textContent += 'Attack\n '; 
 }
