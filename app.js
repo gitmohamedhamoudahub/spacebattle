@@ -1,8 +1,10 @@
 const alienDiv = document.querySelector(".alien");
 const playerDiv = document.querySelector(".player");
+const roundDiv = document.querySelector(".round");
 
 class Battle{
-    constructor(fighter1, fighter2){
+    constructor(
+        fighter1, fighter2){
         this.fighter1 = fighter1;
         this.fighter2 = fighter2;
         this.round = 1;
@@ -19,11 +21,25 @@ class Battle{
         updateDataBind(); 
 
     }
+    newRound(){
+        this.round +=1;
+    }
+
+    get getNewFighterPower(){
+            let newFighter = new Fighter('Alien Z1-' + this.round,15,4,0.1);      
+        return newFighter;
+    }   
+    #randomValue(min,max) {
+
+        return Math.random() * (max - min) + min;
+
+    }
 }
 class Fighter {
     constructor(name,health,attackPower,defensePower) {
         this.name = name;
         this.hull = health;
+        this.defaultHull = health;
         this.firePower = attackPower;
         this.accuracy = defensePower;
             }
@@ -48,22 +64,24 @@ class Fighter {
             }
             return target;
             } 
-        defend(){
-            console.log(`Defend with `);
-        }        
+             
             
     
 }
 
 function updateDataBind(){
     console.log('Update data bind' );
+    console.log(alienFighter.hull);
+    roundDiv.innerHTML = `<div><div>R${battle.round}</div></div>`;
     alienDiv.innerHTML = `
     <div>
     <h3>${alienFighter.name} </h3>
     <hr />
-    <div>Health: ${alienFighter.hull} </div>
-    <div>Attack Power: ${alienFighter.firePower} </div>
-    <div> Defense Power: ${alienFighter.accuracy} </div>
+    <div> Health: ${alienFighter.hull} <progress 
+    max="${ alienFighter.defaultHull}" 
+    value="${alienFighter.hull}" style="width: 100%;"></progress> </div>
+    <div>Attack Power: ${alienFighter.firePower} --  Defense Power: ${alienFighter.accuracy}</div>
+    <div>  </div>
 </div>
     `;
 
@@ -71,20 +89,49 @@ playerDiv.innerHTML = `
 <div>    
 <h3>${captainFighter.name} </h3>
 <hr />
-    <div> Health: ${captainFighter.hull} </div>
-    <div> Attack Power: ${captainFighter.firePower} </div>
-    <div> Defense Power: ${captainFighter.accuracy} </div>
+     <div>
+            Health: ${captainFighter.hull} <progress 
+                max="${ captainFighter.defaultHull}"  
+                value="${captainFighter.hull}" style="width: 100%;"></progress>
+        </div>
+    <div> Attack Power: ${captainFighter.firePower} -- Defense Power: ${captainFighter.accuracy}  </div>
+    <div> </div>
 </div>
 `;
+
+if(alienFighter.hull <= 0)
+{
+    console.log("*******END*********");
+    let newRound =  confirm("You Win, would you like to play another round? \n Press cancel for retreat?");
+    if(!newRound)
+    {
+        alert("Thank You For playing Space Battle!");
+        //clear text area
+        //reset scores
+        // disable playing buttons 
+
+    }
+    else
+    {
+        battle.newRound();
+        alienFighter = battle.getNewFighterPower;
+        updateDataBind();
+    }
+}
 }
 
-let captainFighter = new Fighter('Captain Mohamed',20,5,0.2);
-let alienFighter = new Fighter('Alien Z1',15,4,0.1);
+let alienFighter = {};
+let captainFighter = {};
+let battle = {};
+function newGame()
+{
+    captainFighter = new Fighter('Captain Mohamed',20,5,0.2);
+    alienFighter = new Fighter('Alien Z1',15,4,0.1);
+    battle = new Battle(captainFighter,alienFighter);
+    battle.startBattle();
+    battle.fight();
 
-let battle = new Battle(captainFighter,alienFighter);
-battle.startBattle();
-battle.fight();
-
+}
 function attack()
 {
     let txtgame = document.querySelector('.txtGame');

@@ -6,19 +6,25 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="gameBoard">
             <div class="gameInfoBar">
-                <div class="alien"> </div>
-                <div class="player"></div>
+                <div class="alien"> \(o_o)/</div>
+                <div class="round"></div>
+                <div class="player">\(o_o)/</div>
         </div>
             <div class="gameMainSpace"><h1></h1>
             <textarea class="txtGame" name="txtGame" cols="40" rows="10"  id=""></textarea>
         </div>
             <div class="gameFooter">
                 <button class="btnActionAttack" onclick="attack()">Attack</button>
+                <button class="btnNewGame" onclick="newGame()">Start New Game</button>
                 <button class="btnActionRetreat" onclick="defend()">Defend</button>
             </div>
             

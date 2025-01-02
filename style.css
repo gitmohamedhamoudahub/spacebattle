@@ -1,8 +1,15 @@
-*{
+body{
     margin: 0px;
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
 }
 div{
     border: 1px solid black;
+    align-items: center;
 }
 .gameBoard{
     height: auto !important;
@@ -16,6 +23,15 @@ div{
     justify-content: center;
     align-items: center;
 }
+.round{
+    padding: 20px;
+    /* height: 100%; */
+    /* width: 100%; */
+    background-color: black !important;
+    color: firebrick !important;
+    font-family: "Orbitron", sans-serif;
+font-weight: bolder;
+}
 .gameFooter{
     
     height: auto;
@@ -25,6 +41,7 @@ div{
     justify-content: space-around;
     align-items: center;
     padding: 15px;
+    background-color: black !important;
 }
 .alien,.player{
     height: auto  !important;
@@ -35,7 +52,7 @@ div{
     align-items: center;
 
 
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     padding: 10px;
     /* margin: 10px; */
     /* width: 200px; */
@@ -43,14 +60,29 @@ div{
     background-color: black !important;
 }
 .alien {
-    color: red;
+    color: goldenrod;
 }
 
 .player {
-    color: blue;
+    color: lightcoral;
 }
+
+textarea {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Semi-transparent border */
+    color: yellow; /* Text color for visibility */
+    font-size: 16px;
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: none; /* Prevent resizing */
+    outline: none; /* Remove focus outline */
+    box-shadow: none; /* Remove shadow on focus */
+}
+
+
 .gameMainSpace{
-    /* height: 400px; */
+    height: 350px;
     width: 100%;
     background: url("galaxy.webp");
     background-repeat: no-repeat;
@@ -61,17 +93,52 @@ div{
     justify-content: center;
     align-items: center;
 }
-.btnActionRetreat,.btnActionAttack{
+.btnActionRetreat,.btnActionAttack, .btnNewGame{
     color: gold !important;
     border: 1px solid white;
     border-radius: 50px;
     padding: 10px 20px;
     background-color: black !important;
+    font-family: "Orbitron", sans-serif;
+}
+.btnNewGame{
+    background-color: brown;
+    font-family: "Orbitron", sans-serif;
 }
 .btnActionRetreat:hover,
 .btnActionAttack:hover{
 cursor: pointer;
 }
 .txtGame{
-    border: 1px solid red !important;
+    /* border: 1px solid red !important; */
+    font-family: "Orbitron", sans-serif;
+    font-size: 12px;
+}
+
+
+/*-----------------------------------------------------------------------*/
+progress[value] {
+    /* Default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 20px;
+}
+
+/* Chrome and Safari */
+progress::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+progress::-webkit-progress-value {
+    background-color: red;
+    border-radius: 5px;
+}
+
+/* Firefox */
+progress::-moz-progress-bar {
+    background-color:red;
+    border-radius: 5px;
 }
