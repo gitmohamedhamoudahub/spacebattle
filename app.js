@@ -93,3 +93,12 @@ function attack()
     captainFighter.attack(alienFighter,'Laser');
     updateDataBind();
 }
+
+function defend(){
+    let txtgame = document.querySelector('.txtGame');
+    txtgame.textContent += 'Defend\n ';
+    
+    alienFighter.attack(captainFighter,'Laser');
+    // captainFighter.attack(alienFighter,'Laser');
+    updateDataBind();
+}
