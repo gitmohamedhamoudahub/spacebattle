@@ -152,6 +152,7 @@ function attack()
     
     captainFighter.attack(alienFighter,' Laser ');
     updateDataBind();
+    lightning() ;
 }
 
 function messageLog(message, clear = false)
@@ -172,4 +173,16 @@ function defend(){
     
     alienFighter.attack(captainFighter,' Laser ');
     updateDataBind();
+    lightning() 
+}
+
+function lightning() {
+ 
+    console.log("lightning");
+    const txtGame = document.querySelector(".txtGame");
+
+    txtGame.classList.add('lightning');
+    setTimeout(() => {
+        txtGame.classList.remove('lightning');
+    }, 500); 
 }
