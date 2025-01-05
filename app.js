@@ -129,9 +129,19 @@ if(alienFighter.hull <= 0)
         console.log(alienFighter.hull);
         updateDataBind();
     }
-}
-}
 
+}
+if(captainFighter.hull <= 0)
+    {
+        console.log("*******END*********");
+        
+            alert("You Lose, Thank You For playing Space Battle! ");
+            
+            
+        
+    
+    }
+}
 let alienFighter = {};
 let captainFighter = {};
 let battle = {};
