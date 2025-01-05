@@ -53,21 +53,22 @@ class Fighter {
             const attackEffect = this.firePower ;
             messageLog(`Attack with ` + weapon);
             messageLog(`Attack Effect  ` + attackEffect);
-            messageLog(`${this.name} attacks ${target.name}, affected with ${attackEffect} `);
+            messageLog(`${this.name}  attacks  ${target.name},  affected with  ${attackEffect} `);
             
             let random = Math.random().toFixed(decimalPlaces);
             messageLog(`Random vs Accuracy  ` + random + ' - ' + this.accuracy);
             
             if (random < this.accuracy) {
                     messageLog('You have been hit! ' + attackEffect);
-                    target.hull -= attackEffect;
+                    target.hull -= attackEffect.toFixed(decimalPlaces);
                     if(target.hull < 0)
                     {target.hull = 0;}
+                    target.hull = target.hull.toFixed(decimalPlaces);
                     // updateDataBindings();
             }
             else
             {
-                messageLog('You have been missed the!' + target.name);
+                messageLog('You have been missed the! ' + target.name);
             }
 
             return target;
@@ -120,7 +121,7 @@ if(alienFighter.hull <= 0)
     let newRound =  confirm("You Win, would you like to play another round? \n Press cancel for retreat?");
     if(!newRound)
     {
-        alert("Thank You For playing Space Battle!");
+        alert("Thank You For playing Space Battle! ");
         
     }
     else
@@ -150,7 +151,7 @@ function attack()
     messageLog("******************************************");
     messageLog('Attack\n ');
     
-    captainFighter.attack(alienFighter,'Laser');
+    captainFighter.attack(alienFighter,' Laser ');
     updateDataBind();
 }
 
@@ -161,7 +162,7 @@ function messageLog(message, clear = false)
     if(clear) 
         txtgame.textContent = message;
     else    
-        txtgame.textContent += '\n' + message;
+        txtgame.textContent += ' \n ' + message;
     txtgame.scrollTop = txtgame.scrollHeight;
 }
 
@@ -170,6 +171,6 @@ function defend(){
     messageLog("******************************************");
     messageLog('Defend\n ');
     
-    alienFighter.attack(captainFighter,'Laser');
+    alienFighter.attack(captainFighter,' Laser ');
     updateDataBind();
 }
