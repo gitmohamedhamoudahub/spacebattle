@@ -58,8 +58,7 @@ class Fighter {
             const attackEffect = this.firePower ;
             messageLog(`Attack with ` + weapon);
             messageLog(`Attack Effect  ` + attackEffect);
-            messageLog(`${this.name}  attacks  ${target.name},  affected with  ${attackEffect} `);
-            
+            messageLog(`${this.name}  attacks  ${target.name},  affected with  ${attackEffect} `);         
             let random = Math.random().toFixed(decimalPlaces);
             messageLog(`Random vs Accuracy  ` + random + ' - ' + this.accuracy);
             
@@ -69,7 +68,7 @@ class Fighter {
                     if(target.hull < 0)
                     {target.hull = 0;}
                     target.hull = Math.round(target.hull);
-                    // updateDataBindings();
+                    
             }
             else
             {
