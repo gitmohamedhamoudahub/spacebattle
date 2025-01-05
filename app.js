@@ -2,6 +2,13 @@ const alienDiv = document.querySelector(".alien");
 const playerDiv = document.querySelector(".player");
 const roundDiv = document.querySelector(".round");
 const decimalPlaces = 1;
+const alienhullMin = 3;
+const alienhullMax = 6;
+const alienFirePowerMin = 2;
+const alienFirePowerMax = 4;
+const alienAccuracyMin = 0.6;
+const alienAccuracyMax = 0.8;
+
 class Battle{
     constructor(
         fighter1, fighter2){
@@ -34,11 +41,11 @@ class Battle{
 class Fighter {
     constructor(name, health = -1, attackPower = -1, defensePower = -1) {
         if(health === -1 )
-            {health = Math.round(this.getRandomValue(3,6));}
+            {health = Math.round(this.getRandomValue(alienhullMin , alienhullMax));}
         if(attackPower === -1)
-            {attackPower  = this.getRandomValue(2,4); }
+            {attackPower  = this.getRandomValue(alienFirePowerMin,alienFirePowerMax); }
         if(defensePower === -1)
-            {defensePower = this.getRandomValue(0.6,0.8);}
+            {defensePower = this.getRandomValue(alienAccuracyMin,alienAccuracyMax);}
         this.name = name;
         this.hull = health;
         this.defaultHull = health;  
