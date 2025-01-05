@@ -1,7 +1,7 @@
 const alienDiv = document.querySelector(".alien");
 const playerDiv = document.querySelector(".player");
 const roundDiv = document.querySelector(".round");
-
+const decimalPlaces = 1;
 class Battle{
     constructor(
         fighter1, fighter2){
@@ -26,20 +26,24 @@ class Battle{
     }
 
     get getNewFighterPower(){
-            let newFighter = new Fighter('Alien Z1-' + this.round,15,4,0.1);      
+            let newFighter = new Fighter('Alien Z1-' + this.round,Fighter.getRandomValue(3,6),
+            Fighter.getRandomValue(2,4)
+            ,Fighter.getRandomValue(0.6,0.8));      
         return newFighter;
     }   
-    #randomValue(min,max) {
-
-        return Math.random() * (max - min) + min;
-
-    }
 }
+
 class Fighter {
-    constructor(name,health,attackPower,defensePower) {
+    constructor(name, health = -1, attackPower = -1, defensePower = -1) {
+        if(health === -1 )
+            {health = this.getRandomValue(3,6);}
+        if(attackPower === -1)
+            {attackPower  = this.getRandomValue(2,4); }
+        if(defensePower === -1)
+            {defensePower = this.getRandomValue(0.6,0.8);}
         this.name = name;
         this.hull = health;
-        this.defaultHull = health;
+        this.defaultHull = health;  
         this.firePower = attackPower;
         this.accuracy = defensePower;
             }
@@ -47,23 +51,34 @@ class Fighter {
             this.weapon = weapon;
             this.target = target;
             const attackEffect = this.firePower ;
-            console.log(`Attack with ` + weapon);
-            console.log(`Attack Effect  ` + attackEffect);
-            console.log(`${this.name} attacks ${target.name}, affected with ${attackEffect} `);
-            let random = Math.random();
-            console.log(`Random vs Accuracy  ` + random + ' - ' + this.accuracy);
+            messageLog(`Attack with ` + weapon);
+            messageLog(`Attack Effect  ` + attackEffect);
+            messageLog(`${this.name} attacks ${target.name}, affected with ${attackEffect} `);
+            
+            let random = Math.random().toFixed(decimalPlaces);
+            messageLog(`Random vs Accuracy  ` + random + ' - ' + this.accuracy);
             
             if (random < this.accuracy) {
-                    console.log('You have been hit! ' + attackEffect);
+                    messageLog('You have been hit! ' + attackEffect);
                     target.hull -= attackEffect;
-            
+                    if(target.hull < 0)
+                    {target.hull = 0;}
+                    // updateDataBindings();
             }
             else
             {
-                console.log('You have been missed the!' + target.name);
+                messageLog('You have been missed the!' + target.name);
             }
+
             return target;
             } 
+
+             getRandomValue(min,max) {
+
+                return  (Math.random() * (max - min) + min).toFixed(decimalPlaces);
+                
+            }
+        
              
             
     
@@ -71,7 +86,7 @@ class Fighter {
 
 function updateDataBind(){
     console.log('Update data bind' );
-    console.log(alienFighter.hull);
+    messageLog('Alien Hull => ' + alienFighter.hull);
     roundDiv.innerHTML = `<div><div>R${battle.round}</div></div>`;
     alienDiv.innerHTML = `
     <div>
@@ -106,10 +121,7 @@ if(alienFighter.hull <= 0)
     if(!newRound)
     {
         alert("Thank You For playing Space Battle!");
-        //clear text area
-        //reset scores
-        // disable playing buttons 
-
+        
     }
     else
     {
@@ -125,8 +137,9 @@ let captainFighter = {};
 let battle = {};
 function newGame()
 {
-    captainFighter = new Fighter('Captain Mohamed',20,5,0.2);
-    alienFighter = new Fighter('Alien Z1',15,4,0.1);
+    messageLog('New Game....',true)
+    captainFighter = new Fighter('Captain Mohamed',20,5,0.7);
+    alienFighter = new Fighter('Alien Z1');
     battle = new Battle(captainFighter,alienFighter);
     battle.startBattle();
     battle.fight();
@@ -134,18 +147,29 @@ function newGame()
 }
 function attack()
 {
-    let txtgame = document.querySelector('.txtGame');
-    txtgame.textContent += 'Attack\n ';
+    messageLog("******************************************");
+    messageLog('Attack\n ');
     
     captainFighter.attack(alienFighter,'Laser');
     updateDataBind();
 }
 
-function defend(){
+function messageLog(message, clear = false)
+{
+     
     let txtgame = document.querySelector('.txtGame');
-    txtgame.textContent += 'Defend\n ';
+    if(clear) 
+        txtgame.textContent = message;
+    else    
+        txtgame.textContent += '\n' + message;
+    txtgame.scrollTop = txtgame.scrollHeight;
+}
+
+function defend(){
+    
+    messageLog("******************************************");
+    messageLog('Defend\n ');
     
     alienFighter.attack(captainFighter,'Laser');
-    // captainFighter.attack(alienFighter,'Laser');
     updateDataBind();
 }
