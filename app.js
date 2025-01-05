@@ -16,19 +16,17 @@ class Battle{
     }
     fight() {
         console.log(`Fighting In Round ${this.round}:`);
-        // const attackEffect = Math.max(this.fighter1.firePower - this.fighter2.accuracy, 0);
-        // this.fighter2.accuracy -= attackEffect;
         updateDataBind(); 
 
     }
     newRound(){
         this.round +=1;
+        messageLog("new round started " ,true)
+
     }
 
     get getNewFighterPower(){
-            let newFighter = new Fighter('Alien Z1-' + this.round,Fighter.getRandomValue(3,6),
-            Fighter.getRandomValue(2,4)
-            ,Fighter.getRandomValue(0.6,0.8));      
+            let newFighter = new Fighter('Alien Z1-' + this.round);      
         return newFighter;
     }   
 }
@@ -36,7 +34,7 @@ class Battle{
 class Fighter {
     constructor(name, health = -1, attackPower = -1, defensePower = -1) {
         if(health === -1 )
-            {health = this.getRandomValue(3,6);}
+            {health = Math.round(this.getRandomValue(3,6));}
         if(attackPower === -1)
             {attackPower  = this.getRandomValue(2,4); }
         if(defensePower === -1)
@@ -60,10 +58,10 @@ class Fighter {
             
             if (random < this.accuracy) {
                     messageLog('You have been hit! ' + attackEffect);
-                    target.hull -= attackEffect.toFixed(decimalPlaces);
+                    target.hull -= Math.round(attackEffect);
                     if(target.hull < 0)
                     {target.hull = 0;}
-                    target.hull = target.hull.toFixed(decimalPlaces);
+                    target.hull = Math.round(target.hull);
                     // updateDataBindings();
             }
             else
@@ -128,6 +126,7 @@ if(alienFighter.hull <= 0)
     {
         battle.newRound();
         alienFighter = battle.getNewFighterPower;
+        console.log(alienFighter.hull);
         updateDataBind();
     }
 }
